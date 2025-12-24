@@ -94,17 +94,17 @@ This quick‑start is for someone who wants to run the full pipeline on their ow
 ### 1. Clone the repository
 
   `git clone https://github.com/JackEdwardAuty/Bachelors-Project-Early-Prediction-of-Sepsis-from-Clinical-Data.git`
-  `cd Bachelors-Project-Early-Prediction-of-Sepsis-from-Clinical-Data`
+<br>`cd Bachelors-Project-Early-Prediction-of-Sepsis-from-Clinical-Data`
 
 
 ### 2. Set up the environment
 
 Using `venv` (example with Python ≥ 3.9):
 
-  `python -m venv .venv`
-  `source .venv/bin/activate` # Windows: `.venv\Scripts\activate`
-  `pip install --upgrade pip`
-  `pip install -r requirements.txt`
+<br>`python -m venv .venv`
+<br>`source .venv/bin/activate` # Windows: `.venv\Scripts\activate`
+<br>`pip install --upgrade pip`
+<br>`pip install -r requirements.txt`
 
 If you use conda, create an environment with the packages listed in `requirements.txt` instead.
 
