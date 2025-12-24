@@ -15,7 +15,6 @@ This repository contains my Bachelors project on building a machine‑learning p
 Sepsis is a life‑threatening organ dysfunction caused by a dysregulated host response to infection, and early detection is critical for improving outcomes. Machine‑learning models have shown promise in identifying subtle patterns in electronic health record (EHR) time‑series that precede sepsis onset.
 
 ## Project structure
-
   <br>.
   <br>├── bachelors-report/ # Final year report and relevant documents
   <br>│ ├── assets/ # Templates and other files used
@@ -54,9 +53,14 @@ The architecture follows three main components:
 
 UML diagrams in `uml/` document how these pieces interact and help communicate the design to both technical and clinical audiences.
 
+![Class Diagram](https://github.com/JackEdwardAuty/Bachelors-Project-Early-Prediction-of-Sepsis-from-Clinical-Data/blob/main/uml/class_diagram.png)
+![Sequence Diagram](https://github.com/JackEdwardAuty/Bachelors-Project-Early-Prediction-of-Sepsis-from-Clinical-Data/blob/main/uml/sequence_diagram.png)
+
 ---
 
 ## Data
+
+![](visualisations/showcase/Figure_5:_HR_vs_SBP_Scatterplot_with_Density_Histograms.png)
 
 This project is designed for structured ICU time‑series data similar to PhysioNet / MIMIC‑III sepsis datasets: hourly measurements of vital signs, labs and demographics with binary labels indicating sepsis onset.
 
