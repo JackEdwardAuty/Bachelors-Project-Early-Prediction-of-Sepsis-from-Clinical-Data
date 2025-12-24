@@ -5,3 +5,4 @@ venv/
 venv/
 *.psv
 *.txt
+*.private

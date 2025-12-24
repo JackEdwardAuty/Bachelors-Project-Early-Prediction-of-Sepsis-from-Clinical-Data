@@ -16,29 +16,31 @@ Sepsis is a life‑threatening organ dysfunction caused by a dysregulated host r
 
 ## Project structure
 
-Adjust paths/names below to match your repo:
   <br>.
-  <br>├── data/
-  <br>│ ├── raw/ # Original clinical time-series (not committed if sensitive)
+  <br>├── bachelors-report/ # Final year report and relevant documents
+  <br>│ ├── assets/ # Templates and other files used
+  <br>│ ├── Intermediate_Report.odt
+  <br>│ └── Early_Prediction_of_Sepsis_from_Clinical_Data-Jack_Auty_Bachelors_Report.pdf # Final Report Submitted
+  <br>├── project-dataset/
+  <br>│ ├── PSVs-not-included.txt
+  <br>│ ├── raw/ # Original clinical time-series (not committed if sensitive/filesize restraints)
   <br>│ ├── processed/ # Cleaned, windowed data ready for modelling
   <br>│ └── metadata/ # Feature lists, variable descriptions, cohort definitions
-  <br>├── notebooks/ (placeholder for when re-visit)
-  <br>│ ├── 01_eda.ipynb # Exploratory data analysis
-  <br>│ ├── 02_preprocessing.ipynb
-  <br>│ └── 03_modelling_xgboost.ipynb
-  <br>├── src/
-  <br>│ ├── dataloader.py # DataLoader class: load & preprocess time-series
-  <br>│ ├── trainer.py # ModelTrainer class: train & cross-validate models
-  <br>│ ├── evaluate.py # Evaluator class: metrics, ROC/PR plots, SHAP
-  <br>│ └── utils.py
-  <br>├── uml/
+  <br>├── project-source
+  <br>│ ├── assemble.py # DataLoader class: load & preprocess time-series
+  <br>│ ├── classes.py # ModelTrainer class: train & cross-validate models
+  <br>│ ├── neuralnetwork.py # Evaluator class: metrics, ROC/PR plots, SHAP
+  <br>│ └── model.pt
+  <br>├── uml/ 
   <br>│ ├── class_diagram.png
   <br>│ └── sequence_diagram.png
+  <br>├── visualisations/
+  <br>│ ├── exploratory/
+  <br>│ │ ├── exploring-feature-distribution/
+  <br>│ │ └── exploring-feature-distribution-with-histograms/
+  <br>│ └── showcase/ # Most clinically releveant visualisations and ones used in report
   <br>├── requirements.txt # Python dependencies
   <br>└── README.md
-  <br>├── visualisations/
-  <br>│ ├── best/ # Most clinically releveant visualisations and ones used in report
-  <br>│ ├── other/
 
 ---
 
@@ -63,7 +65,7 @@ Because access to real patient data is restricted, **no raw data is committed to
 1. Access to an appropriate sepsis dataset (e.g. [PhysioNet sepsis challenge data](https://www.kaggle.com/datasets/salikhussaini49/prediction-of-sepsis) or a local EHR extract).  
 2. To modify `data_config.yaml` or equivalent to point to your local data paths and variable names.
 
-Where possible, `data/metadata/` contains feature lists and descriptions to help map your dataset into the expected format.
+Where possible, `project-dataset/metadata/` contains feature lists and descriptions to help map your dataset into the expected format.
 
 ---
 
@@ -105,31 +107,31 @@ If you use conda, create an environment with the packages listed in `requirement
 ### 3. Prepare the data
 
 1. Obtain a suitable sepsis dataset (e.g. [PhysioNet 2019 sepsis challenge](https://www.kaggle.com/datasets/salikhussaini49/prediction-of-sepsis) or similar ICU time‑series data).
-2. Place files under `data/raw/` in the expected format (documented in `data/metadata/README.md` or comments in `dataloader.py`).  
-3. If needed, edit configuration variables in `src/dataloader.py` or a config file (e.g. column names, time column, label column, prediction horizon).
+2. Place files under `project-dataset/raw/` in the expected format (documented in `project-dataset/metadata/README.md` or comments in `dataloader.py`).  
+3. If needed, edit configuration variables in `project-source/dataloader.py` or a config file (e.g. column names, time column, label column, prediction horizon).
 
 ### 4. Run preprocessing
 
 From the repo root:
 
-  `python -m src.dataloader`
+  `python -m project-source.dataloader`
 
 Typical actions:
 
 - Load raw patient‑level files.  
 - Resample and align to hourly time‑steps.  
 - Handle missing values and basic feature engineering.  
-- Save processed data to `data/processed/`.
+- Save processed data to `project-datasetprocessed/`.
 
 Check the console output or logs to confirm the number of patients and windows created.
 
 ### 5. Train a baseline model
 
-  `python -m src.trainer`
+  `python -m project-source.trainer`
 
 This script should:
 
-- Load `data/processed/` datasets.  
+- Load `project-datasetprocessed/` datasets.  
 - Split data into train/validation/test sets.  
 - Train a baseline model (e.g. XGBoost) with default hyperparameters.  
 - Save the model to `models/` and basic metrics to `results/`.
@@ -138,7 +140,7 @@ You can adjust model choice and hyperparameters via command‑line flags or a co
 
 ### 6. Evaluate and inspect results
 
-`python -m src.evaluate`
+`python -m project-source.evaluate`
 
 This will typically:
 
